@@ -76,6 +76,7 @@ services:
       retries: 120
 
   es01:
+    restart: unless-stopped
     depends_on:
       setup:
         condition: service_healthy
@@ -120,6 +121,7 @@ services:
       retries: 120
 
   kibana:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
@@ -152,6 +154,7 @@ services:
       retries: 120
 
   metricbeat01:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
@@ -175,6 +178,7 @@ services:
       - LOGSTASH_HOSTS=http://logstash01:9600
 
   filebeat01:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
@@ -195,6 +199,7 @@ services:
       - LOGSTASH_HOSTS=http://logstash01:9600
 
   logstash01:
+    restart: unless-stopped
     depends_on:
       es01:
         condition: service_healthy
